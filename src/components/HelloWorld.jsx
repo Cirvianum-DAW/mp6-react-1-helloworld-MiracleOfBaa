@@ -7,7 +7,7 @@ function HelloWorld() {
   };
   return (
     <div className="App">
-      <button onClick={handleClick}>React</button>
+      <button onClick={handleClick}></button>
     </div>
   );
 }
