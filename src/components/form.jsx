@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 
-function Form() {
+function Form(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [welcomeMessage, setWelcomeMessage] = useState("");
+
   const handleSubmit = (e) => {
+    e.preventDefault();
     setWelcomeMessage(`Benvingut ${firstName} ${lastName}!`);
-    e.preventDefault(); // Necessari per evitar que el form es refresqui
+    // Afegim la crida a la funció setPlacesDisponibles
+    props.setPlacesDisponibles(props.placesActuals - 1);
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
       <form className="w-1/2" onSubmit={handleSubmit}>
         <h1 className="text-3xl font-bold text-center mb-8">
-          Informació Estudiant
+          Detalls d'estudiant: {props.tipusEstudiantSelect}
         </h1>
         <label className="block mb-2">Nom:</label>
         <input
@@ -40,6 +43,8 @@ function Form() {
       </form>
     </div>
   );
-}
+} // que son els props?
+// 
+
 
 export default Form;

@@ -1,23 +1,28 @@
-import React from "react";
-import { useState } from "react";
-import Form from "./components/Form";
+import React, { useState } from "react";
+import Form from "./components/form";
 
 function App() {
   const [tipusEstudiant, setTipusEstudiant] = useState("No Graduat");
-  const [places, setPlaces] = useState(100);
+  const [ngPlaces, setNGPlaces] = useState(60);
+  const [gPlaces, setGPlaces] = useState(40);
+
   const handleChange = (e) => {
     setTipusEstudiant(e.target.value);
   };
-  // Afegim la funció que actualitza el valor de la variable d'estat places
+
   const setPlacesDisponibles = (updatedPlaces) => {
-    setPlaces(updatedPlaces);
+    tipusEstudiant === "No Graduat"
+      ? setNGPlaces(updatedPlaces)
+      : setGPlaces(updatedPlaces);
   };
+
+  const places = tipusEstudiant === "No Graduat" ? ngPlaces : gPlaces;
+
   return (
     <div className="flex flex-col items-center justify-center gap-5 h-screen">
       <div className="tipusEstudiant">
-        <label className="text-2xl text-center mx-2 block">
-          Places Disponibles: {places}
-        </label>
+        <label className="text-2xl mx-2">Places Disponibles: {places}</label>
+        <br></br>
         <label className="text-2xl mx-2">Selecciona Tipus d'Estudiant:</label>
         <select
           className="appDropDown border rounded-md py-1 px-2"
